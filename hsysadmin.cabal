@@ -7,9 +7,15 @@ license:             BSD3
 license-file:        LICENSE
 author:              James Sanders
 maintainer:          jimmyjazz14@gmail.com
-build-depends:       base, find, MissingH
+build-depends:       base -any, 
+		     regex-posix >= 0.94.1,
+		     process >= 1.0.1.2,
+		     filepath >= 1.1.0.3,
+		     directory >= 1.0.1.0,
+		     Find >= 0.0.3, 
+		     MissingH -any
 build-type:          Simple
 
-executable:          rename
-main-is:             src/rename/rename.hs
+executable:          renamex
+main-is:             src/renamex/renamex.hs
 ghc-options:         -O2 -Wall
