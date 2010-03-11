@@ -12,7 +12,7 @@ build-depends:       base -any,
 		     process >= 1.0.1.2,
 		     filepath >= 1.1.0.3,
 		     directory >= 1.0.1.0,
-		     Find >= 0.0.3, 
+		     hfind >= 0.0.3, 
 		     MissingH -any
 build-type:          Simple
 
