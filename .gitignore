@@ -2,4 +2,4 @@
 *.o
 *~
 #*#
-rename
+src/rename/rename
