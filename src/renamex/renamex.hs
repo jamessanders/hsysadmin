@@ -70,6 +70,7 @@ askPermission str ifyes ifno = do
      else if (answer == 'y') then ifyes else ifno 
 
 
-usage = do progname <- getProgName
-           hPutStrLn stderr 
-             $ printf "Usage: %s <find_regex> <replacement> <filepath>" progname
+usage = do 
+  progname <- getProgName
+  hPutStrLn stderr 
+    $ printf "Usage: %s <find_regex> <replacement> <filepath>" progname
