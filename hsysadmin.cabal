@@ -1,0 +1,15 @@
+name:                hsysadmin
+version:             0.1
+synopsis:            Useful tools for sys admins
+description:         Useful tools for sys admins
+category:            System
+license:             BSD3
+license-file:        LICENSE
+author:              James Sanders
+maintainer:          jimmyjazz14@gmail.com
+build-depends:       base, find, MissingH
+build-type:          Simple
+
+executable:          rename
+main-is:             src/rename/rename.hs
+ghc-options:         -O2 -Wall
