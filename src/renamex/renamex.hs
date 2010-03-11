@@ -25,11 +25,12 @@ main = do
   mapM_ (doReplace rx rt) files
   mapM_ (doReplace rx rt) dirs
 
-numReplace :: [[Char]] -> [Char] -> [Char]
+numReplace :: [String] -> String -> String
 numReplace ls str = replaceNumbered ls str 1
                     where
                       replaceNumbered [] str' _ = str'
-                      replaceNumbered (x:xs) str' n = replace ("%" ++ show n) x (replaceNumbered xs str' (n+1))
+                      replaceNumbered (x:xs) str' n = 
+                          replace ("%" ++ show n) x (replaceNumbered xs str' (n+1))
 
 doReplace regex replacement fpath = do
   let fname = takeFileName  fpath
@@ -70,4 +71,5 @@ askPermission str ifyes ifno = do
 
 
 usage = do progname <- getProgName
-           hPutStrLn stderr $ printf "Usage: %s <find_regex> <replacement> <filepath>" progname
+           hPutStrLn stderr 
+             $ printf "Usage: %s <find_regex> <replacement> <filepath>" progname
