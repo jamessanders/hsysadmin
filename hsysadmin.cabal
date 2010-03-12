@@ -18,4 +18,4 @@ build-type:          Simple
 
 executable:          renamex
 main-is:             src/renamex/renamex.hs
-ghc-options:         -O2 -Wall
+ghc-options:         -O2 

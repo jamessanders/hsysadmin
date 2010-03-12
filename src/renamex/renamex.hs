@@ -25,11 +25,12 @@ main = do
   mapM_ (\(f,n)->doReplace rx rt n f) (zip files [1..])
   mapM_ (\(f,n)->doReplace rx rt n f) (zip dirs  [1..])
 
-numReplace :: [[Char]] -> [Char] -> [Char]
+numReplace :: [String] -> String -> String
 numReplace ls str = replaceNumbered ls str 1
                     where
                       replaceNumbered [] str' _ = str'
-                      replaceNumbered (x:xs) str' n = replace ("%" ++ show n) x (replaceNumbered xs str' (n+1))
+                      replaceNumbered (x:xs) str' n = 
+                          replace ("%" ++ show n) x (replaceNumbered xs str' (n+1))
 
 doReplace regex replacement n fpath = do
   let fname = takeFileName  fpath
@@ -69,5 +70,7 @@ askPermission str ifyes ifno = do
      else if (answer == 'y') then ifyes else ifno 
 
 
-usage = do progname <- getProgName
-           hPutStrLn stderr $ printf "Usage: %s <find_regex> <replacement> <filepath>" progname
+usage = do 
+  progname <- getProgName
+  hPutStrLn stderr 
+    $ printf "Usage: %s <find_regex> <replacement> <filepath>" progname
