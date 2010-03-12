@@ -23,7 +23,7 @@ main = do
   files <- find path doesFileExist
   dirs  <- find path doesDirectoryExist
   mapM_ (\(f,n)->doReplace rx rt n f) (zip files [1..])
-  mapM_ (\(f,n)->doReplace rx rt n f) (zip dirs  [1..])
+  mapM_ (\(f,n)->doReplace rx rt n f) (zip dirs  [(length files + 1)..])
 
 numReplace :: [String] -> String -> String
 numReplace ls str = replaceNumbered ls str 1
