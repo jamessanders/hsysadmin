@@ -22,8 +22,8 @@ main = do
   ------------------------------------------------------------------------
   files <- find path doesFileExist
   dirs  <- find path doesDirectoryExist
-  mapM_ (doReplace rx rt) files
-  mapM_ (doReplace rx rt) dirs
+  mapM_ (\(f,n)->doReplace rx rt n f) (zip files [1..])
+  mapM_ (\(f,n)->doReplace rx rt n f) (zip dirs  [1..])
 
 numReplace :: [[Char]] -> [Char] -> [Char]
 numReplace ls str = replaceNumbered ls str 1
@@ -31,13 +31,13 @@ numReplace ls str = replaceNumbered ls str 1
                       replaceNumbered [] str' _ = str'
                       replaceNumbered (x:xs) str' n = replace ("%" ++ show n) x (replaceNumbered xs str' (n+1))
 
-doReplace regex replacement fpath = do
+doReplace regex replacement n fpath = do
   let fname = takeFileName  fpath
   let dname = takeDirectory fpath
   let checkName = fname =~ regex
   when checkName $
      do let found   = fname =~ regex :: [[String]]
-        let rep     = numReplace (tail $ head found) replacement
+        let rep     = numReplace (tail $ head found) $ replace "%n" (show n) replacement
         let rnamed  = dname </> replace (head $ head found) rep fname
         askPermission 
           (printf "Move '%s' to '%s'?" fpath rnamed) 
