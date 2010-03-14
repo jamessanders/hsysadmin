@@ -8,16 +8,21 @@ license-file:        LICENSE
 author:              James Sanders
 maintainer:          jimmyjazz14@gmail.com
 
-build-depends:       base -any, 
-		     regex-posix >= 0.94.1,
-		     process >= 1.0.1.2,
-		     filepath >= 1.1.0.3,
+build-depends:       MissingH -any,
 		     directory >= 1.0.1.0,
+		     filepath >= 1.1.0.3,
 		     hfind >= 0.0.3, 
-		     MissingH -any,
-                     unix, 
+		     process >= 1.0.1.2,
+		     regex-posix >= 0.94.1,
+                     HTTP >= 0.9,  
+                     containers >= 0.3.0.0, 
+                     mtl >= 1.1.0.2, 
+                     network >= 2.2.1.5, 
                      old-locale, 
-                     time
+                     tagsoup >= 0.8, 
+                     time,
+                     unix, 
+                     base -any
 
 build-type:          Simple
 
@@ -29,3 +34,6 @@ executable:          chronos
 main-is:             src/chronos/chronos.hs
 ghc-options:         -O2
 
+executable:          creep-on
+main-is:             src/creepy/creep-on.hs
+ghc-options:         -O2
