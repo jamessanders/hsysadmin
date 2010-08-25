@@ -22,10 +22,21 @@ main = do
       return 0
 
   where 
-    senseLeap n command = do
+
+    senseLeap n command = 
+        senseLeap' (fromRational (toRational $ n + 0.001)) (round (n * 1000000.0)) command
+
+    senseLeap' :: NominalDiffTime -- Offset
+               -> Int             -- Sleep time
+               -> String          -- Command
+               -> IO ()
+    senseLeap' off sleep command = do
+
          start <- getCurrentTime 
-         usleep (n * 1000)
-         end <- getCurrentTime
+         usleep sleep
+         end   <- getCurrentTime
+
          let diff = abs (diffUTCTime end start)
-         when (diff > fromIntegral (n + 1)) $ system command >> return ()
-         senseLeap n command
+
+         when (diff > off) $ system command >> return ()
+         senseLeap' off sleep command
