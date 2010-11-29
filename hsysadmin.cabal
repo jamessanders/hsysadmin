@@ -37,3 +37,9 @@ ghc-options:         -O2
 executable:          creep-on
 main-is:             src/creepy/creep-on.hs
 ghc-options:         -O2
+
+executable:          timejump
+main-is:             src/timejump/timejump.hs
+ghc-options:         -O2
+
+
