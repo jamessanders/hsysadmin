@@ -33,7 +33,7 @@ httpGet' uri = do
                 httpGet' b
 
 withPage :: (URI -> Maybe (Response String) -> Maybe a ) -> URI -> IO (Maybe a)
-withPage fn a = E.catch (httpGet' a >>= return . fn a) (\_-> return Nothing)
+withPage fn a = catch (httpGet' a >>= return . fn a) (\_-> return Nothing)
 
 
 getPage = withPage aux
